@@ -65,8 +65,6 @@ class Game
 
         mainHall.setExit("south", forest);
         mainHall.setExit("north", tower);
-       // mainHall.setExit("up", towerRoof);
-       // mainHall.setExit("down", basement);
         
         towerRoof.setExit("down", mainHall);
         basement.setExit("up", mainHall);
