@@ -48,7 +48,7 @@ class Game
         camp = new Room("in a camp where you can see a tent");
         tent = new Room("in a tent the inside is covered in blood");
         tower = new Room ("on a tower, you see a foggy forest");
-        basement = new Room ("in the basement");
+        basement = new Room ("in the basement of a tower");
         dungeon =  new Room ("in a room you see a demon standing at a door");
         hell = new Room ("in HELL there is a big gate which looks like an entrance");
 
