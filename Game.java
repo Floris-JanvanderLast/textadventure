@@ -21,7 +21,7 @@ class Game
 {
     private Parser parser;
     private Player player;
-    private Room forest, mainHall, camp ,tower, basement, dungeon, hell, eatingHall, tent;
+    private Room forest, mainHall, camp ,towerRoof, basement, dungeon, hell, eatingHall, tent, tower;
 
     /**
      * Create the game and initialise its internal map.
@@ -47,8 +47,9 @@ class Game
         eatingHall = new Room("in an eating hall");
         camp = new Room("in a camp where you can see a tent");
         tent = new Room("in a tent the inside is covered in blood");
-        tower = new Room ("on a tower, you see a foggy forest");
-        basement = new Room ("in the basement of a tower");
+        towerRoof = new Room ("on a tower, you see a foggy forest");
+        tower = new Room ("You are in a tower");
+        basement = new Room ("in the basement");
         dungeon =  new Room ("in a room you see a demon standing at a door");
         hell = new Room ("in HELL there is a big gate which looks like an entrance");
 
@@ -56,12 +57,18 @@ class Game
         forest.setExit("east", camp);
         forest.setExit("north", mainHall);
         forest.setExit("west", eatingHall);
+        
+        tower.setExit("up", towerRoof);
+        tower.setExit("down", basement);
+        tower.setExit("south", mainHall);
+
 
         mainHall.setExit("south", forest);
-        mainHall.setExit("up", tower);
-        mainHall.setExit("down", basement);
+        mainHall.setExit("north", tower);
+       // mainHall.setExit("up", towerRoof);
+       // mainHall.setExit("down", basement);
         
-        tower.setExit("down", mainHall);
+        towerRoof.setExit("down", mainHall);
         basement.setExit("up", mainHall);
         
         dungeon.setExit("up" , basement);
