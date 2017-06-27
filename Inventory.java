@@ -28,7 +28,7 @@ import java.util.Set;
 		
 		return str;
 	}
-	public HashMap<String, Item> getInventory(){
+	public HashMap<String, Item> getItemList(){
 		return itemList;
 		
 	}

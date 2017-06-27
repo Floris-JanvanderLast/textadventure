@@ -34,7 +34,7 @@ class Player {
 	}
 	private String checkInventory(){
         String returnString = "";
-        Set<String> keys = inventory.getInventory().keySet();
+        Set<String> keys = inventory.getItemList().keySet();
         for(String string : keys){
             returnString += " " + string;
         }
