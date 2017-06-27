@@ -21,7 +21,7 @@ class Game
 {
     private Parser parser;
     private Player player;
-    private Room forest, mainHall, camp ,towerRoof, basement, dungeon, hell, eatingHall, tent, tower;
+    private Room forest, mainHall, camp ,towerRoof, library, dungeon, hell, eatingHall, tent, tower;
 
     /**
      * Create the game and initialise its internal map.
@@ -49,7 +49,7 @@ class Game
         tent = new Room("in a tent the inside is covered in blood");
         towerRoof = new Room ("on a tower, you see a foggy forest");
         tower = new Room ("You are in a tower");
-        basement = new Room ("in the basement");
+        library = new Room ("in a library");
         dungeon =  new Room ("in a room you see a demon standing at a door");
         hell = new Room ("in HELL there is a big gate which looks like an entrance");
 
@@ -59,7 +59,7 @@ class Game
         forest.setExit("west", eatingHall);
         
         tower.setExit("up", towerRoof);
-        tower.setExit("down", basement);
+        tower.setExit("down", library);
         tower.setExit("south", mainHall);
 
 
@@ -67,12 +67,12 @@ class Game
         mainHall.setExit("north", tower);
         
         towerRoof.setExit("down", mainHall);
-        basement.setExit("up", mainHall);
+        library.setExit("up", mainHall);
         
-        dungeon.setExit("up" , basement);
+        dungeon.setExit("up" , library);
         dungeon.setExit("north", hell);
         hell.setExit("south", dungeon);
-        basement.setExit("down", dungeon);
+        library.setExit("down", dungeon);
 
         eatingHall.setExit("east", forest);
 
@@ -85,20 +85,21 @@ class Game
     }
     
     private void createItems(){
-    	Item healthPotion , steelSword, Ring;
+    	Item healthPotion , steelSword, Ring, book;
     	
     	//create the items
     	
     	
+    	book = new Item ("Book", "ring");
     	Ring = new Item ("Ring", "ring");
     	steelSword = new Item("Sword", "steel sword");
     	healthPotion = new Item("HealthVial","healing potion");
-    	Inventory basementInv = basement.getInventory();
+    	Inventory basementInv = library.getInventory();
     	Inventory tentInv = tent.getInventory();
     	Inventory dungeonInv = dungeon.getInventory();
     	Inventory outsideInv = forest.getInventory();
     	dungeonInv.addItem("healthvial", healthPotion);
-    	basementInv.addItem("Ring", Ring);
+    	basementInv.addItem("book", book);
     	tentInv.addItem("sword", steelSword);
     }
     private void createEnemies(){
@@ -179,9 +180,9 @@ class Game
         	Inventory RoomInv = player.getCurrentRoom().getInventory();
         	Entry<String, Item> hash = RoomInv.PickUpItem(command.getSecondWord());
         	player.getInventory().addItem(hash.getKey(), hash.getValue());
-        	if (hash.getKey() == "Ring"){
+        	if (hash.getKey() == "book"){
         		player.dealDamage(20);
-        		System.out.println("This ring is cursed");
+        		System.out.println("This book is cursed your finger is turning to stone you quickly break it off");
         		player.isAlive();
         	}
         }
