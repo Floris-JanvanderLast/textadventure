@@ -179,6 +179,11 @@ class Game
         	Inventory RoomInv = player.getCurrentRoom().getInventory();
         	Entry<String, Item> hash = RoomInv.PickUpItem(command.getSecondWord());
         	player.getInventory().addItem(hash.getKey(), hash.getValue());
+        	if (hash.getKey() == "Ring"){
+        		player.dealDamage(20);
+        		System.out.println("This ring is cursed");
+        		player.isAlive();
+        	}
         }
    //     else if (commandWord.equals("drop")){
         //	Inventory RoomInv = player.getCurrentRoom().getInventory();
