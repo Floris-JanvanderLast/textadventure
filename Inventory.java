@@ -5,22 +5,22 @@ import java.util.Set;
 
 	public class Inventory {
 	
-		private HashMap<String, Item> inventory;
+		private HashMap<String, Item> itemList;
 	
 	
 	public Inventory() {
 	
-	inventory = new HashMap<String, Item>();
+		itemList = new HashMap<String, Item>();
 	
 	
 	}
 	public void addItem(String Pickup, Item item){
-		inventory.put(Pickup, item);
+		itemList.put(Pickup, item);
 	}
 
 	public String getItemNames(){
 		String str = "";
-		for (Item item : inventory.values()) {
+		for (Item item : itemList.values()) {
 			str = "You see a ";
 			str += item.getName();
 			str += " lying on the ground.\n";
@@ -29,11 +29,11 @@ import java.util.Set;
 		return str;
 	}
 	public HashMap<String, Item> getInventory(){
-		return inventory;
+		return itemList;
 		
 	}
 	public Entry<String, Item> PickUpItem(String name){
-		Iterator it = inventory.entrySet().iterator();
+		Iterator it = itemList.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<String, Item> hash = (Entry<String, Item>) it.next();
 			Item i = (Item) hash.getValue();

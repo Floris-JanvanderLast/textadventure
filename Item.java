@@ -1,14 +1,12 @@
 import java.util.HashMap;
 
 public class Item {
-	private HashMap<String, Item> items;
 	private String ItemDescription;
 	private String Name;
 	
 	public Item (String Name ,String ItemDescription){
 		this.Name = Name;
 		this.ItemDescription = ItemDescription;
-		items = new HashMap<String, Item>();
 	}
 	
 	public String LongItemDescription(){
