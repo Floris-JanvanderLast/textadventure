@@ -1,26 +1,10 @@
 import java.util.Map.Entry;
 
-/**
- *  This class is the main class of the "World of Zuul" application.
- *  "World of Zuul" is a very simple, text based adventure game.  Users
- *  can walk around some scenery. That's all. It should really be extended
- *  to make it more interesting!
- *
- *  To play this game, create an instance of this class and call the "play"
- *  method.
- *
- *  This main class creates and initialises all the others: it creates all
- *  rooms, creates the parser and starts the game.  It also evaluates and
- *  executes the commands that the parser returns.
- *
- * @author  Michael Kolling and David J. Barnes
- * @version 1.0 (February 2002)
- */
-
 class Game
 {
     private Parser parser;
     private Player player;
+    private Item item;
     private Room forest, mainHall, camp ,towerRoof, library, dungeon, hell, eatingHall, tent, tower;
 
     /**
@@ -90,14 +74,14 @@ class Game
     	//create the items
     	
     	
-    	book = new Item ("Book", "ring");
-    	Ring = new Item ("Ring", "ring");
-    	steelSword = new Item("Sword", "steel sword");
-    	healthPotion = new Item("HealthVial","healing potion");
+    	book = new Item ("Book", "book", 5);
+    	//Ring = new Item ("Ring", "ring");
+    	steelSword = new Item("Sword", "steel sword", 6);
+    	healthPotion = new Item("HealthVial","healing potion", 5);
     	Inventory basementInv = library.getInventory();
     	Inventory tentInv = tent.getInventory();
     	Inventory dungeonInv = dungeon.getInventory();
-    	Inventory outsideInv = forest.getInventory();
+    //	Inventory outsideInv = forest.getInventory();
     	dungeonInv.addItem("healthvial", healthPotion);
     	basementInv.addItem("book", book);
     	tentInv.addItem("sword", steelSword);
@@ -108,6 +92,7 @@ class Game
     	//create the enemies
     	
     	demon = new Enemy("Demon", "demon");
+    	
     	
     	
     	
@@ -179,17 +164,28 @@ class Game
         else if (commandWord.equals("take")){
         	Inventory RoomInv = player.getCurrentRoom().getInventory();
         	Entry<String, Item> hash = RoomInv.PickUpItem(command.getSecondWord());
-        	player.getInventory().addItem(hash.getKey(), hash.getValue());
-        	if (hash.getKey() == "book"){
-        		player.dealDamage(20);
-        		System.out.println("This book is cursed your finger is turning to stone you quickly break it off");
-        		player.isAlive();
+        	if (player.getInventory().getCurrentWeight() + hash.getValue().getWeight() < player.getInventory().getMaxWeight()){
+        	    	    	
+	        	player.getInventory().addItem(hash.getKey(), hash.getValue());
+	        	if (hash.getKey() == "book"){
+	        		player.dealDamage(20);
+	        		System.out.println("This book is cursed your finger is turning to stone you quickly break it off");
+	        		player.isAlive();
+        		}
+	        	if (hash.getKey() == "sword"){
+	        		System.out.println("you hear something behind you");
+	        		System.out.println("You feel a cool breeze on your neck, the moment you turned around you got stabed in your stomach.");
+	        		System.out.println("You fall to the ground and take your last breath."+ "\n");
+	        		System.out.println("Thanks for playing.");
+	        		System.exit(0);
+	        	}
+        	}else{
+        		System.out.print("you are currently overweight "+ "\n");
         	}
         }
-   //     else if (commandWord.equals("drop")){
-        //	Inventory RoomInv = player.getCurrentRoom().getInventory();
-        	//RoomInv.removeItem(command.getSecondWord());
-      //  }
+        else if (commandWord.equals("drop")){
+        	
+        }
         else if (commandWord.equals("suicide")){
         	System.out.println("You made the choice to scratch your veins with your nails and you killed yourself.");
         	System.exit(0);
@@ -203,6 +199,7 @@ class Game
         }
         else if (commandWord.equals("inventory")){
         	System.out.println(player.lookInventory());
+        	System.out.println(player.getInventory().getCurrentWeight());
         }
         return wantToQuit;
     }

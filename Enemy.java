@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class Enemy {
 	private Inventory inventory;
 	private String EnemyDescription;

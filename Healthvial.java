@@ -1,7 +1,8 @@
 public class Healthvial extends Item {
 	
 	public Healthvial(String Name, String ItemDescription) {
-		super(Name, ItemDescription);
+		super(Name, ItemDescription, 2 );
+		
 
 	}
 	public void usePotion(){
