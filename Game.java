@@ -125,8 +125,8 @@ class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to game!");
-        System.out.println("Game is a new, brutal adventure game.");
+        System.out.println("Welcome to Save Me!");
+        System.out.println("Save Me is a new, brutal adventure game.");
         System.out.println("You wake up in a forest, you look down and see that your armor is drenched in blood");
         System.out.println("You've lost your sword you need to find it in case your attacker returns");
         System.out.println("Type 'help' if you need help.");
@@ -184,7 +184,7 @@ class Game
         	}
         }
         else if (commandWord.equals("drop")){
-        	
+
         }
         else if (commandWord.equals("suicide")){
         	System.out.println("You made the choice to scratch your veins with your nails and you killed yourself.");
