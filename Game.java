@@ -5,17 +5,17 @@ class Game
     private Parser parser;
     private Player player;
     private Item item;
+    private Enemy enemy;
     private Room forest, mainHall, camp ,towerRoof, library, dungeon, hell, eatingHall, tent, tower;
 
     /**
-     * Create the game and initialise its internal map.
+     * Create the game and initialize its internal map.
      */
     public Game()
     {
     	player = new Player();
         createRooms();
         createItems();
-        createEnemies();
         parser = new Parser();
         
     }
@@ -36,8 +36,9 @@ class Game
         library = new Room ("in a library");
         dungeon =  new Room ("in a room you see a demon standing at a door");
         hell = new Room ("in HELL there is a big gate which looks like an entrance");
+        hell.spawnEnemy();
 
-        // initialise room exits
+        // Initialize room exits
         forest.setExit("east", camp);
         forest.setExit("north", mainHall);
         forest.setExit("west", eatingHall);
@@ -85,17 +86,6 @@ class Game
     	dungeonInv.addItem("healthvial", healthPotion);
     	basementInv.addItem("book", book);
     	tentInv.addItem("sword", steelSword);
-    }
-    private void createEnemies(){
-    	Enemy demon;
-    	
-    	//create the enemies
-    	
-    	demon = new Enemy("Demon", "demon");
-    	
-    	
-    	
-    	
     }
     	
     /**
@@ -189,6 +179,9 @@ class Game
         else if (commandWord.equals("suicide")){
         	System.out.println("You made the choice to scratch your veins with your nails and you killed yourself.");
         	System.exit(0);
+        }
+        else if (commandWord.equals("attack")){
+        	
         }
         	
         else if (commandWord.equals("go")){

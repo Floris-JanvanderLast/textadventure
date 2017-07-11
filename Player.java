@@ -4,7 +4,7 @@ import java.util.Set;
 class Player {
 	 private Inventory inventory;
 	 private Room currentRoom;
-	 private int health = 50;
+	 private int health = 10000;
 	 
 	public Player(){
 		
@@ -16,7 +16,10 @@ class Player {
 	public Room getCurrentRoom() {
 		return currentRoom;
 	}
-
+	/*public void attack(){
+		currentRoom.attackRandomEnemy();
+	}
+*/
 
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;

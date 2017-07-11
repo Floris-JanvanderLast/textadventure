@@ -62,10 +62,10 @@ import java.util.Set;
 		return null;
    }
 
-	public void removeItem(String Drop, Item item) {
+	/*public void removeItem(String Drop, Item item) {
 		for (Item e : itemList.values()){
 		}
 		itemList.remove(Drop, item);
 		
-	}	
+	}*/	
 }

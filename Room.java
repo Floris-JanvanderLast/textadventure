@@ -1,24 +1,13 @@
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
-/*
- * Class Room - a room in an adventure game.
- *
- * This class is the main class of the "World of Zuul" application.
- * "World of Zuul" is a very simple, text based adventure game.
- *
- * A "Room" represents one location in the scenery of the game.  It is
- * connected to other rooms via exits.  For each existing exit, the room
- * stores a reference to the neighboring room.
- *
- * @author  Michael Kolling and David J. Barnes
- * @version 1.0 (February 2002)
- */
+import java.util.List;
 
 class Room
 {
 	private Inventory inventory;
+	private List<Enemy>enemylist;
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
 
@@ -32,7 +21,8 @@ class Room
     	inventory = new Inventory();
         this.description = description;
         exits = new HashMap<String, Room>();
-    }
+        enemylist = new ArrayList<Enemy>();
+        }
 
     /**
      * Define an exit from this room.
@@ -41,6 +31,12 @@ class Room
     {
         exits.put(direction, neighbor);
     }
+    public void spawnEnemy(){
+    	Enemy enemy = new Enemy("Bandit");
+    	enemylist.add(enemy);
+    	System.out.println("you see a " + enemy);
+    }
+
 
     /**
      * Return the description of the room (the one that was defined in the
@@ -93,5 +89,10 @@ class Room
 	public Inventory getInventory() {
 		return inventory;
 	}
+
+	/*public void attackRandomEnemy() {
+		int i = Math.floor(Math.random() * (enemylist.size() - 1) - 0);
+		
+	}*/
 }
  	
